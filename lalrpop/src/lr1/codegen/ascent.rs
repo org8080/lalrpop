@@ -5,7 +5,7 @@
 use collections::Multimap;
 use grammar::repr::{
     Grammar, NonterminalString, Production, Symbol, TerminalString, TypeParameter, TypeRepr,
-    WhereClause, Visibility,
+    Visibility, WhereClause,
 };
 use lr1::core::*;
 use lr1::lookahead::Token;

@@ -14,7 +14,7 @@ use util::Sep;
 // These concepts we re-use wholesale
 pub use grammar::parse_tree::{
     Annotation, InternToken, Lifetime, NonterminalString, Path, Span, TerminalLiteral,
-    TerminalString, TypeBound, TypeBoundParameter, TypeParameter, Visibility,
+    TerminalString, TypeBound, TypeParameter, Visibility,
 };
 
 #[derive(Clone, Debug)]
@@ -218,6 +218,55 @@ impl TypeRepr {
         })
     }
 }
+
+//impl WhereClause<TypeRepr> {
+//    pub fn referenced(&self) -> Vec<TypeParameter> {
+//        match self {
+//            WhereClause::Lifetime {
+//                lifetime,
+//                bounds,
+//            } => {
+//                Some(TypeParameter::Lifetime(lifetime.clone()))
+//                    .into_iter()
+//                    .chain(bounds.iter().cloned().map(TypeParameter::Lifetime))
+//                    .collect()
+//            }
+//            WhereClause::Type {
+//                forall: None,
+//                ty,
+//                bounds,
+//            } => {
+//                ty.referenced()
+//                    .into_iter()
+//                    .chain(bounds.iter().flat_map(|b| b.referenced()))
+//                    .collect()
+//            }
+//            WhereClause::Type {
+//                forall: Some(_atoms),
+//                ty,
+//                bounds,
+//            } => {
+//                ty.referenced()
+//                    .into_iter()
+//                    .chain(bounds.iter().flat_map(|b| b.referenced()))
+//                    .filter(|_| /* FIXME -- we should filter out things bound in `_atoms` */ true)
+//                    .collect()
+//            }
+//        }
+//    }
+//}
+//
+//impl TypeBound<TypeRepr> {
+//    pub fn referenced(&self) -> Vec<TypeParameter> {
+//        match self {
+//            TypeBound::Lifetime(atom) => vec![TypeParameter::Lifetime(atom.clone())],
+//            TypeBound::Fn { forall, path parameters, ret } => {
+//            }
+//            TypeBound::Trait { forall, path parameters } => {
+//            }
+//        }
+//    }
+//}
 
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct NominalTypeRepr {
